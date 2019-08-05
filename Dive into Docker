@@ -71,3 +71,13 @@ sudo apt-get install docker-ce=<VERSION_STRING> docker-ce-cli=<VERSION_STRING>
 containerd.io
 
 ***Here, the <VERSION_STRING> should be replaced with something like “18.06.0~ce~3-0~ubuntu” (without quotes).***
+
+==========================================
+
+#Docker CLI
+
+#Command to see the version
+
+docker Version
+
+#
