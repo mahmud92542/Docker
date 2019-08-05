@@ -1,0 +1,73 @@
+Question: Why use Docker?
+
+Docker makes it really easy to install and run software without worrying about setup or dependencies.
+
+====================================
+
+Question: What is Docker?
+
+Docker is a set of coupled software-as-a-service and platform-as-a-service products that use operating-system-level virtualization to develop and deliver software in packages called containers.
+
+====================================
+
+Question: How to install Docker or Linux (Mint 19.1)?
+
+Official documentation : https://docs.docker.com/v17.12/install/#server
+
+#Command for Linux Mint 19.1
+
+#It’s completely okay to have none of these packages installed previously.
+
+sudo apt remove docker docker-engine docker.io containerd runc
+
+
+#Make sure that APT cache is up-to-date.
+
+sudo apt update
+
+#By default, APT doesn’t use HTTPS. Install the following packages that will allow APT to use a repository over HTTPS.
+
+sudo apt-get install \
+apt-transport-https \
+ca-certificates \
+curl \
+gnupg-agent \
+software-properties-common
+
+#For enabling the Docker repo, the official Docker key is important. Time to add the official GPG key of Docker into the APT keyring.
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+#Even after the successful addition of the key, it’s safe to verify the key. Run the following command
+
+sudo apt-key fingerprint 0EBFCD88
+
+#In the case of Docker, there are 3 different repositories – “stable” (recommended for everyone), “nightly” or “test”. Let’s configure the “stable” repo.
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+
+***Note – If you wish to configure any other repo (nightly or test), just change the “stable” from the command into “nightly” or “test” (without quotes).***
+
+#Once the repositories have been added, it’s necessary to refresh the APT cache again.
+
+sudo apt update
+
+#Finally, install the latest version of Docker CE and containerd.
+
+sudo apt install docker-ce docker-ce-cli containerd.io
+
+=========================================
+
+OPTIONAL
+
+#If you’re interested in a certain version of Docker CE, then follow the following procedures.
+Run the following command for listing all the available versions –
+
+apt-cache madison docker-ce
+
+#Once you’ve made your mind, time to install that version! Run the following command –
+
+sudo apt-get install docker-ce=<VERSION_STRING> docker-ce-cli=<VERSION_STRING>
+containerd.io
+
+***Here, the <VERSION_STRING> should be replaced with something like “18.06.0~ce~3-0~ubuntu” (without quotes).***
