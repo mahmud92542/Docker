@@ -1,0 +1,136 @@
+#Creating and Running a Container from an Image
+
+docker run <image name>
+
+docker = reference the Docker Client
+run = try to create and run a container
+image name = name of a image for this container
+
+example - docker run hello-world
+
+================================================
+
+#Overriding Default Commands
+
+docker run <image name> command!
+
+docker = reference the Docker Client
+run = try to create and run a container
+image name = name of a image for this container
+command = default command override
+
+example - docker run busybox echo hi there
+
+for overriding the command, there should be dependencies to execute that command
+
+=================================================
+
+#list all running containers
+
+docker ps
+
+docker = reference the Docker Client
+ps = list all running containers
+
+==================================================
+
+#see the all containers
+
+docker ps --all
+
+==================================================
+
+#currently running containers
+
+docker ps -all
+
+==================================================
+
+#Docker Lifecycle
+
+docker run = docker create + docker start
+
+#Create a Container 
+
+docker create <image name>
+
+docker = reference the Docker Client
+create = try to create the container
+image name = name of a image for this container
+
+example - docker create hello-world
+
+output = a hasing file
+
+#Start a Container
+
+docker = reference the Docker Client
+start = try to create the container
+image name = name of a image for this container
+
+docker start -a <hashing file>
+
+if you forget to use "-a" it will return the <hashing file> again
+
+======================================================
+
+#restarting stopped containers
+
+find out the stopped contairs id.then run this command - 
+
+docker start -a <container id>
+
+***note - we can't use new command line when we start stopped container.***
+
+======================================================
+
+#Removing stopped Container
+
+docker system prune
+
+======================================================
+
+#Retriving Log Outputs
+
+#get logs from a container
+
+docker logs <container id>
+
+docker = reference the docker client
+logs = get logs
+container id = ID of the container to look at
+
+docker create <image name>
+docker start <container id>
+
+opps! we missed the "-a" before <container id>. but no problem, we still can show the output/logs. 
+
+========================================================
+
+
+#Stopping Containers
+
+stop container - docker stop <container id>
+
+kill a container - docker kill <container id>
+
+docker stop takes 10sec to stop the container where docker kill instant shutdown the container. 
+if docker stop doesn't automatically stop in 10sec then Dockers going to automatically fall back to issuing the docker kill caommand.
+
+=========================================================
+
+#Multi- Command Containers
+
+#execute an additional command in a container
+
+docker exec -it <container id> <command>
+
+docker - reference the docker client
+exec - run another command
+-it - allow us to provide input to the container
+<container id> - ID of the container
+<command> - command to execute
+
+===========================================================
+
+***Note : 2 running container in different CLI are absolutely Completely Separate File System and there's no sharing of data between the two.***
